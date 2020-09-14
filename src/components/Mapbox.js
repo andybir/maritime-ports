@@ -6,11 +6,6 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYW5keWJpciIsImEiOiJja2N5eGY4Y3UwOTgzMnZwbXBqdTBzZ2ZwIn0.0k3NisxEj1wBpizvtn7eZQ';
 
-const geocoder = new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl
-});
-
 class Mapbox extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +29,18 @@ class Mapbox extends Component {
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
       })
-    )
+
+      
+    );
+
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
     
   }
 
